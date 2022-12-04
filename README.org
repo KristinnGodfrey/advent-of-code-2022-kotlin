@@ -1,0 +1,8 @@
+** Contents
+
+| Challenge                      | File     |
+|--------------------------------+----------|
+| Day 1: Calorie Counting            | [[./kotlin/hell5/day1.kt ][part 1-2]] |
+| Day 2: Rock Paper Scissors         | [[./kotlin/hell5/day2.kt][part 1-2]] |
+| Day 3: Rucksack Reorganization     | [[./kotlin/hell5/day3.kt][part 1-2]] |
+| Day 4: Camp Cleanup                | [[./kotlin/hell5/day4.kt][part 1-2]] |
