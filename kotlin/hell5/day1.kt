@@ -37,11 +37,3 @@ fun day1() {
     println(oldestMaxSum)
     println(maxSum + oldMaxSum + oldestMaxSum)
 }
-
-//fun day1() {
-//    readInputAsString("resources/day1")
-//        .split("\r\n\r\n")
-//        .map { it.split("\r\n").map{el->el.toInt()} }
-//        .map {it.sum()}
-//        .let{ it -> println(it)}
-//}
