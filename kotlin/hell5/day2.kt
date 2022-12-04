@@ -23,7 +23,6 @@ fun calculateScore(opponent: String, player: String): Int{
             "X" -> return 1 + 6 // rock
             "Y" -> return 2 + 0 // paper
             "Z" -> return 3 + 3 // scissors
-
         }
     }
     else -> println("nothing")
