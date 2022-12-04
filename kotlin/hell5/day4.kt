@@ -1,41 +1,30 @@
 package hell5
 
-
-fun findConjunction(lower0: Int, lower1: Int, higher0: Int, higher1: Int) : Boolean
+fun findFullyContained(lowerRange: IntRange, higherRange: IntRange) : Boolean
 {
-    var returnVal = false
-    if((lower0 <= higher0) and (lower1 >= higher1))
-    {
-        returnVal = true
-    }
-    else if((higher0 <= lower0) and (higher1 >= lower1))
-    {
-        returnVal = true
-    }
-    return returnVal
-
+    return (lowerRange.first <= higherRange.first) && (lowerRange.last >= higherRange.last)
+           || (higherRange.first <= lowerRange.first) && (higherRange.last >= lowerRange.last)
+}
+fun findOverlap(lowerRange: IntRange, higherRange: IntRange) : Boolean
+{
+    lowerRange.forEach { it -> if (higherRange.contains(it)) return true }
+    return false
 }
 
 fun day4(){
-    var score = 0
+    var scorePt1 = 0
+    var scorePt2 = 0
     readInputAsList("resources/day4")
         .map{ it ->
             val (lower, higher) = it.split(",")
-            val (lower0, lower1) = lower.split("-").map{it.toInt()}
-            val (higher0, higher1) = higher.split("-").map{it.toInt()}
-            val l = IntRange(lower0, lower1)
-            val h = IntRange(higher0, higher1)
-            for (it in l)
-            {
-                if (it in h)
-                {
-                    score++
-                    continue
-                }
-            }
-            //l.forEach { it-> if (it in h) score++ }
+            val (lowerStart, lowerEnd) = lower.split("-").map{it.toInt()}
+            val (higherStart, higherEnd) = higher.split("-").map{it.toInt()}
+            val l = IntRange(lowerStart, lowerEnd)
+            val h = IntRange(higherStart, higherEnd)
 
-            //if(findConjunction(lower0, lower1, higher0, higher1)) score++
+            if(findFullyContained(l,h)) scorePt1++
+            if(findOverlap(l,h)) scorePt2++
         }
-    println(score)
+    println("part 1: " + scorePt1)
+    println("part 2: " + scorePt2)
 }
