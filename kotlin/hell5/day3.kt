@@ -6,7 +6,7 @@ fun mapScore(culpritChar: Char) : Int
     alphabet.forEachIndexed{ ind, value -> if (culpritChar == value) return ind + 1}
     return -1
 }
-fun findCulprit(firstHalf: String, secondHalf: String) :Char
+fun findRucksack(firstHalf: String, secondHalf: String) :Char
 {
     firstHalf.forEach { it -> secondHalf.forEach { el -> if(it == el) return el} }
     println("miss")
@@ -16,7 +16,7 @@ fun day3(){
     var score = 0
     readInputAsList("resources/day3")
          .forEach { el-> el.chunked(el.length/2)
-            .let { a -> score += mapScore(findCulprit(a[0],a[1]))}  }
+            .let { a -> score += mapScore(findRucksack(a[0],a[1]))}  }
     println("part1: " + score)
 
     score = 0
