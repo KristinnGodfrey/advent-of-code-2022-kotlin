@@ -14,9 +14,7 @@ fun day6()
 
     for (i in input.indices)
     {
-        if(i < 4){
-            continue
-        }
+        if(i < 4) continue
         var strPt1 = StringBuilder()
         for (j in 0..3)
         {
@@ -25,8 +23,24 @@ fun day6()
         if(strPt1.toString().allUnique())
         {
             println(i+1)
-            return
+            break
         }
+    }
 
+    for (i in input.indices)
+    {
+        if(i < 14) continue
+        var strPt1 = StringBuilder()
+        var indistinct = false
+        for (j in 0..13)
+        {
+            var a = input[i-j]
+            if (strPt1.toString().contains(a)) indistinct = true
+            strPt1.append(a)
+        }
+        if(!indistinct){
+            println(i+1)
+            break
+        }
     }
 }
