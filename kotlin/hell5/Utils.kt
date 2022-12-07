@@ -8,3 +8,5 @@ fun readInputAsFile(name: String) = File("src/main", "$name.txt")
 fun readInputAsList(name: String) = File("src/main", "$name.txt").readLines()
 
 fun readInputAsString(name: String) = Files.readString(Path.of("src/main/$name.txt"))
+
+fun String.allUnique(): Boolean = all(hashSetOf<Char>()::add)
