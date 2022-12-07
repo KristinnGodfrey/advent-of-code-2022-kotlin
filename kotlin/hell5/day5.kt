@@ -8,9 +8,7 @@ fun day5()
 {
     var stacks = readInputAsString("resources/day5").substringBeforeLast("]") + "]"
     stacks = stacks.replace("]         ", "] [ ] [ ] ").replace("]     [", "] [ ] [").replace("    ", "[ ] ")
-    var stackColumn = readInputAsString("resources/day5").substringAfterLast("]").substringBefore("m").trim().split("   ")
     var instruction = "m" + readInputAsString("resources/day5").substringAfter("m")
-    println(instruction)
 
     stacks = stacks.replace("[ ]", "[]").replace("\n", " ")
     var listStacks = stacks.split(" ")
@@ -47,17 +45,10 @@ fun day5()
     val listOfInstructions = instruction.split("\n")
 
 
-    var mutable = reversedStackLists.map { it-> ArrayDeque(it) }.toMutableList()
-    /*
-    [ ] [ ] [ ] [ ] [ ] [ ] [Z] [W] [Z]
-    [ ] [ ] [D] [M] [ ] [ ] [L] [P] [G]
-    [ ] [S] [N] [R] [ ] [ ] [S] [F] [N]
-    [ ] [N] [J] [W] [ ] [J] [F] [D] [F]
-    [N] [H] [G] [J] [ ] [H] [Q] [H] [P]
-    [V] [J] [T] [F] [H] [Z] [R] [L] [M]
-    [C] [M] [C] [D] [F] [T] [P] [S] [S]
-    [S] [Z] [M] [T] [P] [C] [D] [C] [D]
-    */
+    var mutablePt1 = reversedStackLists.map { it-> ArrayDeque(it) }.toMutableList()
+    var mutablePt2 = reversedStackLists.map { it-> ArrayDeque(it) }.toMutableList()
+
+    // part 1
     for (str in listOfInstructions){
         var move = str.substringAfter("move ").split(" ")[0].toInt() - 1
         var from = str.substringAfter("from ").take(1).toInt() -1
@@ -65,11 +56,38 @@ fun day5()
 
         for (i in 0..move)
         {
-            mutable[to].push(mutable[from].pop())
+            mutablePt1[to].push(mutablePt1[from].pop())
         }
     }
-    for( it in mutable)
+    print("part1: ")
+
+    for( it in mutablePt1)
     {
         print(it.peek())
     }
+    println()
+
+    //part 2
+    for (str in listOfInstructions){
+        var move = str.substringAfter("move ").split(" ")[0].toInt() - 1
+        var from = str.substringAfter("from ").take(1).toInt() -1
+        var to = str.substringAfter("to ").take(1).toInt() -1
+
+        var listToPush = mutableListOf<Char>()
+        for (i in 0..move)
+        {
+            listToPush.add(mutablePt2[from].pop())
+        }
+        listToPush = listToPush.asReversed()
+        for (i in listToPush)
+        {
+            mutablePt2[to].push(i)
+        }
+    }
+    print("part2: ")
+    for( it in mutablePt2)
+    {
+        print(it.peek())
+    }
+
 }
