@@ -22,10 +22,10 @@ fun day6()
         }
         if(strPt1.toString().allUnique())
         {
-            println(i+1)
+            println("part1: " + (i+1))
             break
         }
-    }
+    } 
 
     for (i in input.indices)
     {
@@ -39,7 +39,7 @@ fun day6()
             strPt1.append(a)
         }
         if(!indistinct){
-            println(i+1)
+            println("part2: " + (i+1))
             break
         }
     }
