@@ -7,5 +7,5 @@ package hell5
 
 
 fun main() {
-    day4();
+    day5()
 }
